@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    background-color: #313131;
+    color: beige;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+}
+.movieContainer{
+    padding: 2rem;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+.movie{ 
+    width: 203px;
+    border: 2px solid cornflowerblue;
+}
+.movie img{
+    width: 200px;
+    height: 250px;
+}
