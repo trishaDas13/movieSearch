@@ -1,10 +1,15 @@
 let input = document.querySelector('input');
 let movieContainer = document.querySelector('.movieContainer');
+let mydialog = document.querySelector('.mydialog');
+let modal = document.getElementsByClassName('modal');
+let paginationStore = document.querySelector('.paginationStore');
 let apiKey = '24b041e4';
+let pageCount = 1;
+let total = 0;
 
 //todo: -------- Fetch API ----------
 async function fetchAPI(){
-    let data = await fetch(`https://www.omdbapi.com/?&apikey=${apiKey}&s=${input.value}&page=1`);
+    let data = await fetch(`https://www.omdbapi.com/?&apikey=${apiKey}&s=${input.value}&page=${pageCount}`);
     let res = await data.json();
     //* error handelling
     if(res.Error == "Too many results."){
@@ -17,6 +22,7 @@ async function fetchAPI(){
         movieContainer.innerHTML = "Please Enter a search term";
     }
     createObject(res);
+    
 }
 //todo: -------- Debounce ----------
 function debounce(fetchAPI, delay){
@@ -41,7 +47,7 @@ function createObject(res){
             poster : item.Poster,
         }
     });
-    appendMovie(newMovieArray);
+    appendMovie(newMovieArray);   
 }
 //todo: -------- Append Movies ---------
 function appendMovie(newMovieArray){
@@ -52,13 +58,50 @@ function appendMovie(newMovieArray){
         movie.classList.add('movie');
         
         movie.innerHTML = `
-            <img src="${item.poster}" alt="error">
+            <img src="${item.poster}" alt="error" onclick = "showDialog('${item.poster}')">
             <p class="title">Title : <span>${item.name}</span></p>
             <p class="year">Released Year : <span>${item.year}</span></p>
         `
         movieContainer.appendChild(movie);
     });
 }
+//todo: -------- Show Dialog Box ---------
+function showDialog(link){
+    let imageLink = link;
+    mydialog.show();
+    modal[0].innerHTML = `
+        <div class="modalImg">
+            <img src='${imageLink}' alt="">
+            <button class="close" onclick="closeDialog()"> Close </button>
+        </div>
+    `;
+}
+//todo: --------- Close Dialog Box---------
+function closeDialog() {
+    mydialog.close();
+}
 //todo: -------- Pagination ---------
+function pagination(){
+    let totalPages = Math.ceil(total / 10);
+    let pageStore = document.createElement('div');
+    pageStore.classList.add('pageStore')
+    pageStore.innerHTML = `
+        <button ${pageCount === 1 ? 'disabled' : ''} onclick="navigate(${pageCount-1})">Prev.</button>
+        <p class="paginationPara">
+            Page <span>${pageCount}</span> of <span>${totalPages}</span>
+        </p>
+        <button ${pageCount === totalPages ? 'disabled' : ''} onclick="navigate(${pageCount+1})">Next</button>
+    `
+    paginationStore.appendChild(pageStore);
+}
+pagination();
+//todo: -------- Pagination ---------
+function navigate(page){
+    if((page >= pageCount ) && page <= Math.ceil(total / 10)){
+        pageCount = page;
+    }
+}
+
 
 input.addEventListener('input', searchResults);
+

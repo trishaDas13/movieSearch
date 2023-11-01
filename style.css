@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Cormorant:wght@400;600;700&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -5,31 +6,124 @@
 }
 body{
     width: 100%;
-    background-color: #313131;
-    color: beige;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background-color: rgb(255, 244, 224);
 }
 nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 20px;
+    color: white;
+    font-family: 'Acme', sans-serif;
+    letter-spacing: 2px;
+    font-size: 32px;
+    background-color: rgb(77, 77, 77);
 }
+input{
+    width: 50%;
+    color: rgb(36, 35, 42);
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 28px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+    background: rgb(251, 251, 251);
+    transition: all 0.1s ease 0s;
+    outline: none;
+}
+:focus{
+    border: 2px solid rgb(229, 124, 35);
+}
+.container{
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .movieContainer{
+    width: 100%;
     padding: 2rem;
     /* display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 30px;
+    font-family: 'Acme', sans-serif;
+    color: rgb(180, 96, 96);
+    font-size: 30px;
+    font-weight: 700;
+    place-items: center;
+    border: 2px solid red;
+    
 }
 .movie{ 
-    width: 203px;
+    width: 250px;
+    height: 300px;
     border: 2px solid cornflowerblue;
 }
 .movie img{
     width: 200px;
     height: 250px;
+}
+.pageStore{
+    display: flex;
+    gap: 10px;
+}
+.mydialog {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: grid;
+    height: 100vh;
+    max-height: none;
+    width: 100%;
+    max-width: none;
+    justify-items: center;
+    opacity: 0;
+    overscroll-behavior: contain;
+    z-index: 999;
+    background-color: transparent;
+    color: inherit;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-property: transform, opacity, visibility;
+    overflow-y: hidden;
+    place-items: center;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.mydialog[open] {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+}
+.modal{
+    height: 410px;
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    gap: 30px;
+    padding: 2rem;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    position: relative;
 }
