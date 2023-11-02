@@ -137,6 +137,9 @@ function pagination(){
 pagination();
 function handler(){
     document.querySelector('.paginationPara span').textContent= pageCount;
+    if(input.value == ""){
+        document.querySelector('.paginationPara span').innerHTML= 1;
+    }
 }
 function lastPage(lastPageIndex){
     document.querySelector('.paginationPara .totalCount').textContent= lastPageIndex;
