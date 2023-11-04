@@ -1,5 +1,7 @@
 # reviewHub
 
+Hoisted link: https://trishadas13.github.io/reviewCorner/
+
 <h2>HTML code description:</h2>
 
 ✔ "nav": The navigation section contains a title "🎬 Review Hub 🎬" indicating that this is a hub for movie reviews. It also includes an input field with the placeholder "Search your movie here...." for users to search for movies.
